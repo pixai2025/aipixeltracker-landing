@@ -328,7 +328,7 @@
         </section>
     </div>
 
-    <!-- Spanish Content -->
+    <!-- Spanish Content --> 
     <div id="es-content" class="lang-content hidden">
         <!-- Header ES -->
         <header class="hero-gradient">
@@ -602,7 +602,7 @@
                             <div class="grid md:grid-cols-2 gap-4 mb-6">
                                 <input type="email" name="email" placeholder="Tu dirección de email" required 
                                        class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
-                                <input type="text" id="website" name="website" required placeholder="ejemplo.com"
+                                <input type="text" name="website" required placeholder="ejemplo.com"
                                        class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
                             </div>
                             <div class="mb-6">
@@ -637,6 +637,7 @@
             </div>
         </div>
     </footer>
+
 <script>
 let currentLang = 'en';
 
@@ -666,7 +667,7 @@ function scrollToSignup() {
     signupSection.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Form submission - VERSIÓN UNIFICADA
+// Form submission - VERSIÓN MEJORADA
 async function handleFormSubmit(form, lang) {
     const formData = new FormData(form);
     let website = formData.get('website');
@@ -707,29 +708,51 @@ async function handleFormSubmit(form, lang) {
         }
         
         if (result.success) {
-    // Show success message
-    if (messageEl) {
-        messageEl.className = 'mt-6 p-4 bg-green-500 bg-opacity-20 border border-green-500 rounded-lg text-green-100';
-        messageEl.textContent = lang === 'es' ? 
-            '¡Perfecto! Te has registrado para el acceso beta. Te contactaremos pronto.' :
-            'Perfect! You\'ve been registered for beta access. We\'ll contact you soon.';
-    } else {
-        alert(lang === 'es' ? 
-            '¡Perfecto! Te has registrado para el acceso beta.' : 
-            'Perfect! You\'ve been registered for beta access.');
-    }
-    form.reset();
-} else {
-    // Show specific error message from API
-    const errorMessage = result.message || 'Error al procesar la solicitud';
-    if (messageEl) {
-        messageEl.className = 'mt-6 p-4 bg-yellow-500 bg-opacity-20 border border-yellow-500 rounded-lg text-yellow-100';
-        messageEl.textContent = errorMessage;
-    } else {
-        alert(errorMessage);
-    }
-}
-
+            // Show success message
+            if (messageEl) {
+                messageEl.className = 'mt-6 p-4 bg-green-500 bg-opacity-20 border border-green-500 rounded-lg text-green-100';
+                messageEl.textContent = lang === 'es' ? 
+                    '¡Perfecto! Te has registrado para el acceso beta. Te contactaremos pronto.' :
+                    'Perfect! You\'ve been registered for beta access. We\'ll contact you soon.';
+            } else {
+                alert(lang === 'es' ? 
+                    '¡Perfecto! Te has registrado para el acceso beta.' : 
+                    'Perfect! You\'ve been registered for beta access.');
+            }
+            form.reset();
+        } else {
+            // Handle different types of errors
+            let errorClass, errorMessage;
+            
+            if (result.message && result.message.includes('already registered')) {
+                // Email already exists - show warning (yellow)
+                errorClass = 'mt-6 p-4 bg-yellow-500 bg-opacity-20 border border-yellow-500 rounded-lg text-yellow-100';
+                errorMessage = lang === 'es' ? 
+                    'Este email ya está registrado para el acceso beta.' :
+                    'This email is already registered for beta access.';
+            } else if (result.message && result.message.includes('Beta spots are full')) {
+                // Beta full - show info (blue)
+                errorClass = 'mt-6 p-4 bg-blue-500 bg-opacity-20 border border-blue-500 rounded-lg text-blue-100';
+                errorMessage = lang === 'es' ? 
+                    'Los espacios beta están llenos. ¡Únete a nuestra lista de espera!' :
+                    'Beta spots are full. Join our waitlist!';
+            } else {
+                // Other errors - show red
+                errorClass = 'mt-6 p-4 bg-red-500 bg-opacity-20 border border-red-500 rounded-lg text-red-100';
+                errorMessage = result.message || (lang === 'es' ? 
+                    'Error al procesar la solicitud' : 
+                    'Error processing request');
+            }
+            
+            // Show error message
+            if (messageEl) {
+                messageEl.className = errorClass;
+                messageEl.textContent = errorMessage;
+            } else {
+                alert(errorMessage);
+            }
+        }
+        
     } catch (error) {
         console.error('Error:', error);
         const messageEl = form.parentElement.querySelector('.form-message, #form-message');
