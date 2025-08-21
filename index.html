@@ -17,9 +17,10 @@
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
         .fade-in { animation: fadeIn 0.6s ease-in; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .hidden { display: none; }
+        .hidden { display: none !important; }
         .spinner { animation: spin 1s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .rotate-180 { transform: rotate(180deg); }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -51,7 +52,7 @@
                         The world's first pixel tracker specifically designed to detect AI bots like GPTBot, Claude, and Perplexity visiting your website. No more blind spots in your analytics.
                     </p>
                     <div class="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-                        <button onclick="scrollToSignup()" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        <button class="cta-button w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
                             <i class="fas fa-rocket mr-2"></i>
                             Get Exclusive Beta Access
                         </button>
@@ -240,7 +241,7 @@
                     
                     <div class="space-y-6">
                         <div class="bg-white rounded-xl p-6 shadow-lg">
-                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center">
                                 <h3 class="font-semibold text-gray-900">Where exactly do I place the tracking code?</h3>
                                 <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
                             </button>
@@ -250,7 +251,7 @@
                         </div>
                         
                         <div class="bg-white rounded-xl p-6 shadow-lg">
-                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center">
                                 <h3 class="font-semibold text-gray-900">Does it affect my website's performance?</h3>
                                 <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
                             </button>
@@ -260,7 +261,7 @@
                         </div>
                         
                         <div class="bg-white rounded-xl p-6 shadow-lg">
-                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center">
                                 <h3 class="font-semibold text-gray-900">Which AI bots can you detect?</h3>
                                 <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
                             </button>
@@ -270,7 +271,7 @@
                         </div>
                         
                         <div class="bg-white rounded-xl p-6 shadow-lg">
-                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center">
                                 <h3 class="font-semibold text-gray-900">Is this compatible with my existing analytics?</h3>
                                 <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
                             </button>
@@ -280,7 +281,7 @@
                         </div>
                         
                         <div class="bg-white rounded-xl p-6 shadow-lg">
-                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center">
                                 <h3 class="font-semibold text-gray-900">What about privacy and GDPR compliance?</h3>
                                 <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
                             </button>
@@ -350,7 +351,7 @@
                         El primer pixel tracker del mundo diseñado específicamente para detectar bots de IA como GPTBot, Claude y Perplexity visitando tu sitio web. No más puntos ciegos en tus analytics.
                     </p>
                     <div class="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-                        <button onclick="scrollToSignup()" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        <button class="cta-button w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
                             <i class="fas fa-rocket mr-2"></i>
                             Obtener Acceso Beta Exclusivo
                         </button>
@@ -539,7 +540,7 @@
                     
                     <div class="space-y-6">
                         <div class="bg-white rounded-xl p-6 shadow-lg">
-                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center">
                                 <h3 class="font-semibold text-gray-900">¿Dónde exactamente coloco el código de seguimiento?</h3>
                                 <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
                             </button>
@@ -549,7 +550,7 @@
                         </div>
                         
                         <div class="bg-white rounded-xl p-6 shadow-lg">
-                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center">
                                 <h3 class="font-semibold text-gray-900">¿Afecta el rendimiento de mi sitio web?</h3>
                                 <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
                             </button>
@@ -559,7 +560,7 @@
                         </div>
                         
                         <div class="bg-white rounded-xl p-6 shadow-lg">
-                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center">
                                 <h3 class="font-semibold text-gray-900">¿Qué bots IA pueden detectar?</h3>
                                 <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
                             </button>
@@ -569,7 +570,7 @@
                         </div>
                         
                         <div class="bg-white rounded-xl p-6 shadow-lg">
-                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center">
                                 <h3 class="font-semibold text-gray-900">¿Es compatible con mis analytics existentes?</h3>
                                 <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
                             </button>
@@ -579,7 +580,7 @@
                         </div>
                         
                         <div class="bg-white rounded-xl p-6 shadow-lg">
-                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center">
                                 <h3 class="font-semibold text-gray-900">¿Qué pasa con la privacidad y cumplimiento GDPR?</h3>
                                 <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
                             </button>
@@ -643,45 +644,54 @@
 <script>
 let currentLang = 'en';
 
-// Language Toggle - CORREGIDO
-function initLanguageToggle() {
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        langToggle.addEventListener('click', function() {
-            currentLang = currentLang === 'en' ? 'es' : 'en';
-            
-            document.getElementById('en-content').classList.toggle('hidden', currentLang !== 'en');
-            document.getElementById('es-content').classList.toggle('hidden', currentLang !== 'es');
-            document.getElementById('currentLang').textContent = currentLang.toUpperCase();
-        });
+// Language Toggle
+function toggleLanguage() {
+    console.log('🌐 Toggling language from', currentLang);
+    
+    currentLang = currentLang === 'en' ? 'es' : 'en';
+    
+    const enContent = document.getElementById('en-content');
+    const esContent = document.getElementById('es-content');
+    const langDisplay = document.getElementById('currentLang');
+    
+    if (currentLang === 'es') {
+        enContent.classList.add('hidden');
+        esContent.classList.remove('hidden');
+        langDisplay.textContent = 'ES';
+    } else {
+        esContent.classList.add('hidden');
+        enContent.classList.remove('hidden');
+        langDisplay.textContent = 'EN';
     }
+    
+    console.log('✅ Language switched to:', currentLang);
 }
 
-// FAQ Toggle - CORREGIDO
+// FAQ Toggle
 function toggleFAQ(button) {
     const content = button.nextElementSibling;
     const icon = button.querySelector('i');
     
-    if (content) {
-        content.classList.toggle('hidden');
-    }
-    if (icon) {
-        icon.classList.toggle('rotate-180');
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+    } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
     }
 }
 
-// Scroll to signup - CORREGIDO
+// Scroll to signup
 function scrollToSignup() {
-    const signupSection = currentLang === 'en' ? 
-        document.getElementById('beta-signup') : 
-        document.getElementById('beta-signup-es');
+    const targetId = currentLang === 'en' ? 'beta-signup' : 'beta-signup-es';
+    const element = document.getElementById(targetId);
     
-    if (signupSection) {
-        signupSection.scrollIntoView({ behavior: 'smooth' });
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
-// ✅ FUNCIÓN MEJORADA CON TODAS LAS CORRECCIONES
+// Form submission handler
 async function handleFormSubmit(form, lang) {
     const button = form.querySelector('button[type="submit"]');
     const buttonText = button.querySelector('.button-text');
@@ -717,7 +727,7 @@ async function handleFormSubmit(form, lang) {
     const t = texts[lang];
     
     try {
-        // 1️⃣ VALIDACIÓN DE DATOS MEJORADA
+        // Validación de datos
         const formData = new FormData(form);
         const email = formData.get('email')?.trim();
         const website = formData.get('website')?.trim();
@@ -727,7 +737,7 @@ async function handleFormSubmit(form, lang) {
             throw new Error('VALIDATION_ERROR');
         }
 
-        // 2️⃣ NORMALIZACIÓN DE URL MEJORADA
+        // Normalización de URL
         let cleanWebsite = website;
         if (cleanWebsite && !cleanWebsite.match(/^https?:\/\//)) {
             cleanWebsite = 'https://' + cleanWebsite;
@@ -742,7 +752,7 @@ async function handleFormSubmit(form, lang) {
             source: 'landing_page'
         };
 
-        // 3️⃣ UI LOADING STATE MEJORADO
+        // UI Loading state
         button.disabled = true;
         buttonIcon.className = 'fas fa-spinner spinner mr-2';
         buttonText.textContent = t.submitting;
@@ -751,9 +761,9 @@ async function handleFormSubmit(form, lang) {
             messageEl.classList.add('hidden');
         }
 
-        // 4️⃣ REQUEST CON MEJORES CONFIGURACIONES
+        // Request con timeout
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 20000); // 20 segundos
+        const timeoutId = setTimeout(() => controller.abort(), 20000);
 
         const response = await fetch('https://ai-pixel-production.up.railway.app/api/beta-signup', {
             method: 'POST',
@@ -772,33 +782,22 @@ async function handleFormSubmit(form, lang) {
 
         clearTimeout(timeoutId);
 
-        // 5️⃣ MANEJO DE RESPUESTA MEJORADO
+        // Manejo de respuesta
         let result;
         const contentType = response.headers.get('content-type');
         
         if (contentType && contentType.includes('application/json')) {
             result = await response.json();
         } else {
-            // Si no es JSON, tratarlo como error del servidor
             throw new Error('NON_JSON_RESPONSE');
         }
 
-        // 6️⃣ MANEJO DE ÉXITO Y ERRORES ESPECÍFICOS
         if (response.ok && (result.success === true || result.status === 'success')) {
-            // ✅ ÉXITO
+            // Éxito
             showMessage(messageEl, t.success, 'success');
             form.reset();
-            
-            // Analytics tracking (opcional)
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'beta_signup', {
-                    event_category: 'conversion',
-                    event_label: lang
-                });
-            }
-
         } else {
-            // ❌ ERRORES ESPECÍFICOS DEL SERVIDOR
+            // Errores específicos del servidor
             let errorMessage = t.genericError;
             let messageType = 'error';
 
@@ -816,8 +815,6 @@ async function handleFormSubmit(form, lang) {
                 } else if (response.status >= 500) {
                     errorMessage = t.serverError;
                 }
-            } else if (response.status === 429) {
-                errorMessage = 'Too many requests. Please try again later.';
             } else if (response.status >= 500) {
                 errorMessage = t.serverError;
             }
@@ -828,7 +825,6 @@ async function handleFormSubmit(form, lang) {
     } catch (error) {
         console.error('Form submission error:', error);
         
-        // 7️⃣ MANEJO DE ERRORES DE RED ESPECÍFICOS
         let errorMessage = t.genericError;
         
         if (error.name === 'AbortError') {
@@ -844,14 +840,14 @@ async function handleFormSubmit(form, lang) {
         showMessage(messageEl, errorMessage, 'error');
         
     } finally {
-        // 8️⃣ RESTAURAR UI SIEMPRE
+        // Restaurar UI
         button.disabled = false;
         buttonIcon.className = 'fas fa-rocket mr-2';
         buttonText.textContent = lang === 'es' ? 'Solicitar Acceso Beta' : 'Request Beta Access';
     }
 }
 
-// ✅ FUNCIÓN AUXILIAR PARA MOSTRAR MENSAJES
+// Función auxiliar para mostrar mensajes
 function showMessage(messageEl, text, type) {
     if (!messageEl) {
         alert(text);
@@ -877,74 +873,53 @@ function showMessage(messageEl, text, type) {
     }
 }
 
-// ✅ EVENT LISTENERS MEJORADOS
+// Event listeners
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 AI Pixel Tracker - Initializing...');
     
-    // 1. Inicializar toggle de idioma
-    initLanguageToggle();
-    
-    // 2. Formulario en inglés
-    const betaForm = document.getElementById('betaForm');
-    if (betaForm) {
-        betaForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            console.log('📝 Form EN submitted');
-            handleFormSubmit(this, 'en');
-        });
-        console.log('✅ English form initialized');
-    } else {
-        console.warn('⚠️ English form not found');
+    // 1. Language toggle
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', toggleLanguage);
+        console.log('✅ Language toggle initialized');
     }
     
-    // 3. Formulario en español
-    const betaFormEs = document.getElementById('betaFormEs');
-    if (betaFormEs) {
-        betaFormEs.addEventListener('submit', function(e) {
-            e.preventDefault();
-            console.log('📝 Form ES submitted');
-            handleFormSubmit(this, 'es');
-        });
-        console.log('✅ Spanish form initialized');
-    } else {
-        console.warn('⚠️ Spanish form not found');
-    }
-    
-    // 4. Inicializar botones FAQ
+    // 2. FAQ buttons
     const faqButtons = document.querySelectorAll('.faq-toggle');
     faqButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            toggleFAQ(this);
-        });
+        button.addEventListener('click', () => toggleFAQ(button));
     });
     console.log(`✅ ${faqButtons.length} FAQ buttons initialized`);
     
-    // 5. Inicializar botones CTA
-    const ctaButtons = document.querySelectorAll('button[onclick="scrollToSignup()"]');
+    // 3. CTA buttons
+    const ctaButtons = document.querySelectorAll('.cta-button');
     ctaButtons.forEach(button => {
-        button.removeAttribute('onclick');
         button.addEventListener('click', scrollToSignup);
     });
     console.log(`✅ ${ctaButtons.length} CTA buttons initialized`);
     
-    console.log('🎉 All components initialized successfully!');
-    
-    // 6. Test de conectividad (solo en desarrollo)
-    if (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')) {
-        console.log('🔍 Development mode: Connection test available');
-        setTimeout(testServerConnection, 2000);
-    }
-});
-
-// ✅ FUNCIÓN DE TEST DE CONECTIVIDAD (para debugging)
-async function testServerConnection() {
-    try {
-        const response = await fetch('https://ai-pixel-production.up.railway.app/api/health', {
-            method: 'GET',
-            mode: 'cors'
+    // 4. Forms
+    const betaForm = document.getElementById('betaForm');
+    if (betaForm) {
+        betaForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleFormSubmit(this, 'en');
         });
-        console.log('✅ Server connection test:', response.status);
-    } catch (error) {
-        console.log('❌ Server connection test failed:', error.message);
+        console.log('✅ English form initialized');
     }
-}
+    
+    const betaFormEs = document.getElementById('betaFormEs');
+    if (betaFormEs) {
+        betaFormEs.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleFormSubmit(this, 'es');
+        });
+        console.log('✅ Spanish form initialized');
+    }
+    
+    console.log('🎉 All components initialized successfully!');
+});
+</script>
+
+</body>
+</html>
