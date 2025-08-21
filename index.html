@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Pixel Tracker - The First AI Bot Detection Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-gradient { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .fade-in { animation: fadeIn 0.6s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Language Switcher -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="langToggle" class="bg-white rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300 border">
+            <i class="fas fa-globe text-blue-600 mr-2"></i>
+            <span id="currentLang" class="font-medium">EN</span>
+        </button>
+    </div>
+
+    <!-- English Content -->
+    <div id="en-content" class="lang-content">
+        <!-- Header -->
+        <header class="hero-gradient">
+            <div class="container mx-auto px-6 py-20">
+                <div class="text-center fade-in">
+                    <div class="mb-6">
+                        <span class="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                            🚀 World's First AI Bot Tracker
+                        </span>
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                        Finally Know When <br>
+                        <span class="gradient-text">AI Bots Consume</span><br>
+                        Your Content
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                        The world's first pixel tracker specifically designed to detect AI bots like GPTBot, Claude, and Perplexity visiting your website. No more blind spots in your analytics.
+                    </p>
+                    <div class="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+                        <button onclick="scrollToSignup()" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-rocket mr-2"></i>
+                            Get Exclusive Beta Access
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Problem Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">The Hidden Problem</h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">AI bots are consuming your content invisibly, and traditional analytics can't see them</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-8">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-eye-slash text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Invisible AI Traffic</h3>
+                                    <p class="text-gray-600">AI bots like GPTBot, Claude, and Perplexity crawl your content without appearing in Google Analytics</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Incomplete Analytics</h3>
+                                    <p class="text-gray-600">You're missing crucial data about who's using your content to train AI models</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-question-circle text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">No Control</h3>
+                                    <p class="text-gray-600">Without visibility, you can't make informed decisions about AI bot access to your content</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-900 rounded-2xl p-8 text-white">
+                            <h3 class="text-2xl font-bold mb-6">Traditional Analytics</h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                                    <span>Human Visitors</span>
+                                    <span class="text-green-400">✓ Tracked</span>
+                                </div>
+                                <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                                    <span>Search Engine Bots</span>
+                                    <span class="text-green-400">✓ Tracked</span>
+                                </div>
+                                <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                                    <span>GPTBot</span>
+                                    <span class="text-red-400">✗ Hidden</span>
+                                </div>
+                                <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                                    <span>ClaudeBot</span>
+                                    <span class="text-red-400">✗ Hidden</span>
+                                </div>
+                                <div class="flex justify-between items-center py-3">
+                                    <span>PerplexityBot</span>
+                                    <span class="text-red-400">✗ Hidden</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="py-20 hero-gradient">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Simple Implementation</h2>
+                    <p class="text-xl text-gray-600 mb-16">Get complete AI bot tracking with just one line of code</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <span class="text-2xl font-bold text-blue-600">1</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Paste Code in &lt;head&gt;</h3>
+                            <p class="text-gray-600">Add our tracking script to your website's &lt;head&gt; section, just like Google Analytics</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <span class="text-2xl font-bold text-purple-600">2</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Site-wide Detection</h3>
+                            <p class="text-gray-600">Our tracker automatically monitors ALL pages across your entire website</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <span class="text-2xl font-bold text-green-600">3</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">View AI Bot Activity</h3>
+                            <p class="text-gray-600">See which AI bots visit your content in real-time through your dashboard</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">Powerful Features</h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Everything you need to track and understand AI bot behavior on your website</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-robot text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Detect 25+ AI Bots</h3>
+                            <p class="text-gray-600">Track GPTBot, ClaudeBot, PerplexityBot, Google-Extended, and many more</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-tachometer-alt text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Real-time Dashboard</h3>
+                            <p class="text-gray-600">Monitor AI bot activity as it happens with live updates and insights</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-code text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">1-Line Integration</h3>
+                            <p class="text-gray-600">Simple implementation that works with any website or CMS platform</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-yellow-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-chart-bar text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Advanced Analytics</h3>
+                            <p class="text-gray-600">Detailed reports on bot behavior, frequency, and content preferences</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-red-50 to-pink-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Privacy Compliant</h3>
+                            <p class="text-gray-600">GDPR compliant tracking that respects user privacy and data protection</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-teal-50 to-cyan-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-teal-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-bolt text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Zero Performance Impact</h3>
+                            <p class="text-gray-600">Lightweight, asynchronous tracking with no effect on site speed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-20 hero-gradient">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                                <h3 class="font-semibold text-gray-900">Where exactly do I place the tracking code?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-4 text-gray-600">
+                                <p>Add the code snippet to your website's &lt;head&gt; section, just like Google Analytics. Once installed, it automatically tracks AI bot activity across your entire website. No additional configuration needed.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                                <h3 class="font-semibold text-gray-900">Does it affect my website's performance?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-4 text-gray-600">
+                                <p>No. The tracker is lightweight and loads asynchronously, with zero impact on your site's speed or user experience. It's designed to be as unobtrusive as possible while providing comprehensive AI bot detection.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                                <h3 class="font-semibold text-gray-900">Which AI bots can you detect?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-4 text-gray-600">
+                                <p>We detect all major AI crawlers including GPTBot, ClaudeBot, PerplexityBot, Google-Extended, BingBot AI, and many more. Our detection database is constantly updated to include new AI bots as they emerge.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                                <h3 class="font-semibold text-gray-900">Is this compatible with my existing analytics?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-4 text-gray-600">
+                                <p>Yes! AI Pixel Tracker works alongside your existing analytics tools like Google Analytics, complementing them with AI bot data they can't see. It doesn't interfere with any other tracking scripts.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                                <h3 class="font-semibold text-gray-900">What about privacy and GDPR compliance?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-4 text-gray-600">
+                                <p>We're fully GDPR compliant. We only track publicly available user agent information from bots, not personal data from human users. No cookies are set for human visitors, only bot detection occurs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beta Signup -->
+        <section id="beta-signup" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white">
+                        <h2 class="text-4xl font-bold mb-6">Join the Beta Program</h2>
+                        <p class="text-xl mb-8 opacity-90">Be among the first to gain visibility into your AI bot traffic. Limited beta spots available.</p>
+                        
+                        <form id="betaForm" class="max-w-2xl mx-auto">
+                            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                                <input type="email" id="email" name="email" placeholder="Your email address" required 
+                                       class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
+                                <input type="url" id="website" name="website" placeholder="Your website URL" required
+                                       class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
+                            </div>
+                            <div class="mb-6">
+                                <select id="pageviews" name="pageviews" class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
+                                    <option value="">Monthly pageviews (optional)</option>
+                                    <option value="0-1k">0 - 1,000</option>
+                                    <option value="1k-10k">1,000 - 10,000</option>
+                                    <option value="10k-100k">10,000 - 100,000</option>
+                                    <option value="100k+">100,000+</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
+                                <i class="fas fa-rocket mr-2"></i>
+                                Request Beta Access
+                            </button>
+                        </form>
+                        
+                        <div id="form-message" class="mt-6 hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Spanish Content -->
+    <div id="es-content" class="lang-content hidden">
+        <!-- Header ES -->
+        <header class="hero-gradient">
+            <div class="container mx-auto px-6 py-20">
+                <div class="text-center fade-in">
+                    <div class="mb-6">
+                        <span class="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                            🚀 Primer Tracker de Bots IA del Mundo
+                        </span>
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                        Finalmente Sabe Cuándo <br>
+                        <span class="gradient-text">Los Bots de IA Consumen</span><br>
+                        Tu Contenido
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                        El primer pixel tracker del mundo diseñado específicamente para detectar bots de IA como GPTBot, Claude y Perplexity visitando tu sitio web. No más puntos ciegos en tus analytics.
+                    </p>
+                    <div class="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+                        <button onclick="scrollToSignup()" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-rocket mr-2"></i>
+                            Obtener Acceso Beta Exclusivo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Problem Section ES -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">El Problema Oculto</h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Los bots de IA están consumiendo tu contenido de forma invisible, y las analíticas tradicionales no pueden verlos</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-8">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-eye-slash text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Tráfico IA Invisible</h3>
+                                    <p class="text-gray-600">Los bots como GPTBot, Claude y Perplexity rastrean tu contenido sin aparecer en Google Analytics</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Analytics Incompletos</h3>
+                                    <p class="text-gray-600">Te faltan datos cruciales sobre quién está usando tu contenido para entrenar modelos de IA</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-question-circle text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Sin Control</h3>
+                                    <p class="text-gray-600">Sin visibilidad, no puedes tomar decisiones informadas sobre el acceso de bots IA a tu contenido</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-900 rounded-2xl p-8 text-white">
+                            <h3 class="text-2xl font-bold mb-6">Analytics Tradicionales</h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                                    <span>Visitantes Humanos</span>
+                                    <span class="text-green-400">✓ Rastreados</span>
+                                </div>
+                                <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                                    <span>Bots de Búsqueda</span>
+                                    <span class="text-green-400">✓ Rastreados</span>
+                                </div>
+                                <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                                    <span>GPTBot</span>
+                                    <span class="text-red-400">✗ Oculto</span>
+                                </div>
+                                <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                                    <span>ClaudeBot</span>
+                                    <span class="text-red-400">✗ Oculto</span>
+                                </div>
+                                <div class="flex justify-between items-center py-3">
+                                    <span>PerplexityBot</span>
+                                    <span class="text-red-400">✗ Oculto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works ES -->
+        <section class="py-20 hero-gradient">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Implementación Simple</h2>
+                    <p class="text-xl text-gray-600 mb-16">Obtén seguimiento completo de bots IA con solo una línea de código</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <span class="text-2xl font-bold text-blue-600">1</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Pegar Código en &lt;head&gt;</h3>
+                            <p class="text-gray-600">Agrega nuestro script de seguimiento a la sección &lt;head&gt; de tu sitio web, como Google Analytics</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <span class="text-2xl font-bold text-purple-600">2</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Detección en Todo el Sitio</h3>
+                            <p class="text-gray-600">Nuestro tracker monitorea automáticamente TODAS las páginas de tu sitio web completo</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-8 shadow-lg card-hover">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <span class="text-2xl font-bold text-green-600">3</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Ver Actividad de Bots IA</h3>
+                            <p class="text-gray-600">Ve qué bots IA visitan tu contenido en tiempo real a través de tu dashboard</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features ES -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">Características Poderosas</h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Todo lo que necesitas para rastrear y entender el comportamiento de bots IA en tu sitio web</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-robot text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Detecta 25+ Bots IA</h3>
+                            <p class="text-gray-600">Rastrea GPTBot, ClaudeBot, PerplexityBot, Google-Extended y muchos más</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-tachometer-alt text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Dashboard en Tiempo Real</h3>
+                            <p class="text-gray-600">Monitorea la actividad de bots IA mientras sucede con actualizaciones en vivo</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-code text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Integración de 1 Línea</h3>
+                            <p class="text-gray-600">Implementación simple que funciona con cualquier sitio web o plataforma CMS</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-yellow-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-chart-bar text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Analytics Avanzados</h3>
+                            <p class="text-gray-600">Reportes detallados sobre comportamiento de bots, frecuencia y preferencias de contenido</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-red-50 to-pink-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Cumple con Privacidad</h3>
+                            <p class="text-gray-600">Seguimiento compatible con GDPR que respeta la privacidad del usuario y protección de datos</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-teal-50 to-cyan-100 rounded-xl p-6 card-hover">
+                            <div class="w-12 h-12 bg-teal-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas fa-bolt text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-3">Cero Impacto en Rendimiento</h3>
+                            <p class="text-gray-600">Seguimiento ligero y asíncrono sin efecto en la velocidad del sitio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section ES -->
+        <section class="py-20 hero-gradient">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">Preguntas Frecuentes</h2>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                                <h3 class="font-semibold text-gray-900">¿Dónde exactamente coloco el código de seguimiento?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-4 text-gray-600">
+                                <p>Agrega el código a la sección &lt;head&gt; de tu sitio web, como Google Analytics. Una vez instalado, automáticamente rastrea la actividad de bots IA en todo tu sitio web. No se necesita configuración adicional.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                                <h3 class="font-semibold text-gray-900">¿Afecta el rendimiento de mi sitio web?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-4 text-gray-600">
+                                <p>No. El tracker es ligero y se carga de forma asíncrona, con cero impacto en la velocidad de tu sitio o experiencia del usuario. Está diseñado para ser lo menos intrusivo posible mientras proporciona detección completa de bots IA.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                                <h3 class="font-semibold text-gray-900">¿Qué bots IA pueden detectar?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-4 text-gray-600">
+                                <p>Detectamos todos los principales crawlers de IA incluyendo GPTBot, ClaudeBot, PerplexityBot, Google-Extended, BingBot AI y muchos más. Nuestra base de datos de detección se actualiza constantemente para incluir nuevos bots IA a medida que surgen.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                                <h3 class="font-semibold text-gray-900">¿Es compatible con mis analytics existentes?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-4 text-gray-600">
+                                <p>¡Sí! AI Pixel Tracker funciona junto con tus herramientas de analytics existentes como Google Analytics, complementándolas con datos de bots IA que no pueden ver. No interfiere con otros scripts de seguimiento.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                                <h3 class="font-semibold text-gray-900">¿Qué pasa con la privacidad y cumplimiento GDPR?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transform transition-transform"></i>
+                            </button>
+                            <div class="faq-content hidden mt-4 text-gray-600">
+                                <p>Cumplimos totalmente con GDPR. Solo rastreamos información de user agent públicamente disponible de bots, no datos personales de usuarios humanos. No se establecen cookies para visitantes humanos, solo ocurre detección de bots.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beta Signup ES -->
+        <section id="beta-signup-es" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white">
+                        <h2 class="text-4xl font-bold mb-6">Únete al Programa Beta</h2>
+                        <p class="text-xl mb-8 opacity-90">Sé de los primeros en obtener visibilidad de tu tráfico de bots IA. Espacios beta limitados disponibles.</p>
+                        
+                        <form id="betaFormEs" class="max-w-2xl mx-auto">
+                            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                                <input type="email" name="email" placeholder="Tu dirección de email" required 
+                                       class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
+                                <input type="url" name="website" placeholder="URL de tu sitio web" required
+                                       class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
+                            </div>
+                            <div class="mb-6">
+                                <select name="pageviews" class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
+                                    <option value="">Pageviews mensuales (opcional)</option>
+                                    <option value="0-1k">0 - 1,000</option>
+                                    <option value="1k-10k">1,000 - 10,000</option>
+                                    <option value="10k-100k">10,000 - 100,000</option>
+                                    <option value="100k+">100,000+</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
+                                <i class="fas fa-rocket mr-2"></i>
+                                Solicitar Acceso Beta
+                            </button>
+                        </form>
+                        
+                        <div class="form-message mt-6 hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold gradient-text mb-4">AI Pixel Tracker</h3>
+                <p class="text-gray-400 mb-6">The world's first AI bot detection platform</p>
+                <p class="text-gray-500 text-sm">© 2024 AI Pixel Tracker. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'en';
+        
+        // Language Toggle
+        document.getElementById('langToggle').addEventListener('click', function() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            
+            document.getElementById('en-content').classList.toggle('hidden', currentLang !== 'en');
+            document.getElementById('es-content').classList.toggle('hidden', currentLang !== 'es');
+            document.getElementById('currentLang').textContent = currentLang.toUpperCase();
+        });
+        
+        // FAQ Toggle
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+        
+        // Scroll to signup
+        function scrollToSignup() {
+            const signupSection = currentLang === 'en' ? 
+                document.getElementById('beta-signup') : 
+                document.getElementById('beta-signup-es');
+            signupSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Form submission
+        function handleFormSubmit(form, lang) {
+            const formData = new FormData(form);
+            const data = {
+                email: formData.get('email'),
+                website: formData.get('website'),
+                pageviews: formData.get('pageviews'),
+                language: lang
+            };
+            
+            // Show loading state
+            const button = form.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
+            button.disabled = true;
+            
+            // Send to API
+            fetch('https://aipixeltracker.lat/api/beta-signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                const messageEl = form.parentElement.querySelector('.form-message, #form-message');
+                messageEl.classList.remove('hidden');
+                
+                if (result.success) {
+                    messageEl.className = 'mt-6 p-4 bg-green-500 bg-opacity-20 border border-green-500 rounded-lg text-green-100';
+                    messageEl.textContent = lang === 'en' ? 
+                        'Success! Check your email for next steps.' :
+                        '¡Éxito! Revisa tu email para los próximos pasos.';
+                    form.reset();
+                } else {
+                    messageEl.className = 'mt-6 p-4 bg-red-500 bg-opacity-20 border border-red-500 rounded-lg text-red-100';
+                    messageEl.textContent = result.message;
+                }
+            })
+            .catch(error => {
+                const messageEl = form.parentElement.querySelector('.form-message, #form-message');
+                messageEl.classList.remove('hidden');
+                messageEl.className = 'mt-6 p-4 bg-red-500 bg-opacity-20 border border-red-500 rounded-lg text-red-100';
+                messageEl.textContent = lang === 'en' ? 
+                    'Error submitting form. Please try again.' :
+                    'Error al enviar el formulario. Inténtalo de nuevo.';
+            })
+            .finally(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            });
+        }
+        
+        // English form
+        document.getElementById('betaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleFormSubmit(this, 'en');
+        });
+        
+        // Spanish form
+        document.getElementById('betaFormEs').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleFormSubmit(this, 'es');
+        });
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDtXIrGej1LAkFQkK%2FQAHAX%2FLfdX0s5ndjPO0TOcha%2FtbAdjkXzK67w1DF%2BzdXVbfgix63trPyYte60oINOMrbarmYy0Hx%2BNmG34aBE89pSYdgGm87DM6UpRbVqRjW18g31nEU63qEZGVsh2qQTD0KHRQTwW7BUJx8Odj4uvG%2BujhnTGDv3EgOJ%2B2vOAQKgvcUi9kH7dPtyUlw0TOKg7MZSTUNM9b%2BFMFM1EGF63%2FYUJpuX1p1qj4tfXF3%2B%2BrSO8plsUK1%2B7FaeeFgDO0HRXhH2xMUotk3NUuGFMaiCTbkTCR3dt1pWkXsVNISE71GzBIoyyDY1AjmyPkDW54Ch%2B2jupdxSuxgkmAERSJAJ2obbg%2BysmH817HRvCftXOrVdX%2B%2F6ZGkEM5parYQ3lcYmECtYL0C3XULGkkE8ohQ7h2tJ1prYnAOVGkAjCg6y2UUkWZOmCn%2BNGRIO8DyBETWhknZHLKSQQ6wnGcfaqmMin2uC1WILTJRPznyqAyPA9zn%2F6uC%2FzDp%2FSuQSa6jS0yCIBtJU0%3D";
+        window.__genspark_locale = "es-ES";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDtXIrGej1LAkFQkK/QAHAX/LfdX0s5ndjPO0TOcha/tbAdjkXzK67w1DF+zdXVbfgix63trPyYte60oINOMrbarmYy0Hx+NmG34aBE89pSYdgGm87DM6UpRbVqRjW18g31nEU63qEZGVsh2qQTD0KHRQTwW7BUJx8Odj4uvG+ujhnTGDv3EgOJ+2vOAQKgvcUi9kH7dPtyUlw0TOKg7MZSTUNM9b+FMFM1EGF63/YUJpuX1p1qj4tfXF3++rSO8plsUK1+7FaeeFgDO0HRXhH2xMUotk3NUuGFMaiCTbkTCR3dt1pWkXsVNISE71GzBIoyyDY1AjmyPkDW54Ch+2jupdxSuxgkmAERSJAJ2obbg+ysmH817HRvCftXOrVdX+/6ZGkEM5parYQ3lcYmECtYL0C3XULGkkE8ohQ7h2tJ1prYnAOVGkAjCg6y2UUkWZOmCn+NGRIO8DyBETWhknZHLKSQQ6wnGcfaqmMin2uC1WILTJRPznyqAyPA9zn/6uC/zDp/SuQSa6jS0yCIBtJU0=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
