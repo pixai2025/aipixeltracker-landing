@@ -707,27 +707,29 @@ async function handleFormSubmit(form, lang) {
         }
         
         if (result.success) {
-            // Show success message
-            if (messageEl) {
-                messageEl.className = 'mt-6 p-4 bg-green-500 bg-opacity-20 border border-green-500 rounded-lg text-green-100';
-                messageEl.textContent = lang === 'es' ? 
-                    '¡Perfecto! Te has registrado para el acceso beta. Te contactaremos pronto.' :
-                    'Perfect! You\'ve been registered for beta access. We\'ll contact you soon.';
-            } else {
-                alert(lang === 'es' ? 
-                    '¡Perfecto! Te has registrado para el acceso beta.' : 
-                    'Perfect! You\'ve been registered for beta access.');
-            }
-            form.reset();
-        } else {
-            // Show error message
-            if (messageEl) {
-                messageEl.className = 'mt-6 p-4 bg-red-500 bg-opacity-20 border border-red-500 rounded-lg text-red-100';
-                messageEl.textContent = result.message || 'Error al procesar la solicitud';
-            } else {
-                alert(result.message || 'Error al procesar la solicitud');
-            }
-        }
+    // Show success message
+    if (messageEl) {
+        messageEl.className = 'mt-6 p-4 bg-green-500 bg-opacity-20 border border-green-500 rounded-lg text-green-100';
+        messageEl.textContent = lang === 'es' ? 
+            '¡Perfecto! Te has registrado para el acceso beta. Te contactaremos pronto.' :
+            'Perfect! You\'ve been registered for beta access. We\'ll contact you soon.';
+    } else {
+        alert(lang === 'es' ? 
+            '¡Perfecto! Te has registrado para el acceso beta.' : 
+            'Perfect! You\'ve been registered for beta access.');
+    }
+    form.reset();
+} else {
+    // Show specific error message from API
+    const errorMessage = result.message || 'Error al procesar la solicitud';
+    if (messageEl) {
+        messageEl.className = 'mt-6 p-4 bg-yellow-500 bg-opacity-20 border border-yellow-500 rounded-lg text-yellow-100';
+        messageEl.textContent = errorMessage;
+    } else {
+        alert(errorMessage);
+    }
+}
+
     } catch (error) {
         console.error('Error:', error);
         const messageEl = form.parentElement.querySelector('.form-message, #form-message');
