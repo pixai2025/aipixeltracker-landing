@@ -303,7 +303,7 @@
                             <div class="grid md:grid-cols-2 gap-4 mb-6">
                                 <input type="email" id="email" name="email" placeholder="Your email address" required 
                                        class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
-                                <input type="url" id="website" name="website" placeholder="Your website URL" required
+                                <input type="text" id="website" name="website" required placeholder="example.com"
                                        class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
                             </div>
                             <div class="mb-6">
@@ -602,7 +602,7 @@
                             <div class="grid md:grid-cols-2 gap-4 mb-6">
                                 <input type="email" name="email" placeholder="Tu dirección de email" required 
                                        class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
-                                <input type="url" name="website" placeholder="URL de tu sitio web" required
+                                <input type="text" id="website" name="website" required placeholder="ejemplo.com"
                                        class="w-full px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300">
                             </div>
                             <div class="mb-6">
@@ -633,7 +633,7 @@
             <div class="text-center">
                 <h3 class="text-2xl font-bold gradient-text mb-4">AI Pixel Tracker</h3>
                 <p class="text-gray-400 mb-6">The world's first AI bot detection platform</p>
-                <p class="text-gray-500 text-sm">© 2024 AI Pixel Tracker. All rights reserved.</p>
+                <p class="text-gray-500 text-sm">© 2025 AI Pixel Tracker. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -670,13 +670,45 @@
         // Form submission
         function handleFormSubmit(form, lang) {
             const formData = new FormData(form);
-            const data = {
-                email: formData.get('email'),
-                website: formData.get('website'),
-                pageviews: formData.get('pageviews'),
-                language: lang
-            };
-            
+            let website = formData.get('website');
+        
+            // Clean and validate website - add https:// automatically
+            website = website.trim();
+            if (website && !website.startsWith('http://') && !website.startsWith('https://')) {
+            website = 'https://' + website;
+    }
+    
+        const data = {
+        email: formData.get('email'),
+        website: website,
+        pageviews: formData.get('pageviews'),
+        language: lang
+    };
+    
+            // Continue with your existing fetch logic...
+            fetch('https://ai-pixel-production.up.railway.app/api/beta-signup', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Show success message
+            alert(lang === 'es' ? '¡Perfecto! Te has registrado para el acceso beta.' : 'Perfect! You\'ve been registered for beta access.');
+            form.reset();
+        } else {
+            // Show error message
+            alert(data.message || 'Error al procesar la solicitud');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error de conexión. Por favor intenta de nuevo.');
+    });
+}            
             // Show loading state
             const button = form.querySelector('button[type="submit"]');
             const originalText = button.innerHTML;
@@ -735,11 +767,3 @@
     </script>
 </body>
 </html>
-    <script id="html_badge_script1">
-        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
-            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDtXIrGej1LAkFQkK%2FQAHAX%2FLfdX0s5ndjPO0TOcha%2FtbAdjkXzK67w1DF%2BzdXVbfgix63trPyYte60oINOMrbarmYy0Hx%2BNmG34aBE89pSYdgGm87DM6UpRbVqRjW18g31nEU63qEZGVsh2qQTD0KHRQTwW7BUJx8Odj4uvG%2BujhnTGDv3EgOJ%2B2vOAQKgvcUi9kH7dPtyUlw0TOKg7MZSTUNM9b%2BFMFM1EGF63%2FYUJpuX1p1qj4tfXF3%2B%2BrSO8plsUK1%2B7FaeeFgDO0HRXhH2xMUotk3NUuGFMaiCTbkTCR3dt1pWkXsVNISE71GzBIoyyDY1AjmyPkDW54Ch%2B2jupdxSuxgkmAERSJAJ2obbg%2BysmH817HRvCftXOrVdX%2B%2F6ZGkEM5parYQ3lcYmECtYL0C3XULGkkE8ohQ7h2tJ1prYnAOVGkAjCg6y2UUkWZOmCn%2BNGRIO8DyBETWhknZHLKSQQ6wnGcfaqmMin2uC1WILTJRPznyqAyPA9zn%2F6uC%2FzDp%2FSuQSa6jS0yCIBtJU0%3D";
-        window.__genspark_locale = "es-ES";
-        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDtXIrGej1LAkFQkK/QAHAX/LfdX0s5ndjPO0TOcha/tbAdjkXzK67w1DF+zdXVbfgix63trPyYte60oINOMrbarmYy0Hx+NmG34aBE89pSYdgGm87DM6UpRbVqRjW18g31nEU63qEZGVsh2qQTD0KHRQTwW7BUJx8Odj4uvG+ujhnTGDv3EgOJ+2vOAQKgvcUi9kH7dPtyUlw0TOKg7MZSTUNM9b+FMFM1EGF63/YUJpuX1p1qj4tfXF3++rSO8plsUK1+7FaeeFgDO0HRXhH2xMUotk3NUuGFMaiCTbkTCR3dt1pWkXsVNISE71GzBIoyyDY1AjmyPkDW54Ch+2jupdxSuxgkmAERSJAJ2obbg+ysmH817HRvCftXOrVdX+/6ZGkEM5parYQ3lcYmECtYL0C3XULGkkE8ohQ7h2tJ1prYnAOVGkAjCg6y2UUkWZOmCn+NGRIO8DyBETWhknZHLKSQQ6wnGcfaqmMin2uC1WILTJRPznyqAyPA9zn/6uC/zDp/SuQSa6jS0yCIBtJU0=";
-    </script>
-    
-    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
