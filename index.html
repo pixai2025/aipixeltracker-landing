@@ -643,30 +643,42 @@
 <script>
 let currentLang = 'en';
 
-// Language Toggle
-document.getElementById('langToggle').addEventListener('click', function() {
-    currentLang = currentLang === 'en' ? 'es' : 'en';
-    
-    document.getElementById('en-content').classList.toggle('hidden', currentLang !== 'en');
-    document.getElementById('es-content').classList.toggle('hidden', currentLang !== 'es');
-    document.getElementById('currentLang').textContent = currentLang.toUpperCase();
-});
+// Language Toggle - CORREGIDO
+function initLanguageToggle() {
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', function() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            
+            document.getElementById('en-content').classList.toggle('hidden', currentLang !== 'en');
+            document.getElementById('es-content').classList.toggle('hidden', currentLang !== 'es');
+            document.getElementById('currentLang').textContent = currentLang.toUpperCase();
+        });
+    }
+}
 
-// FAQ Toggle
+// FAQ Toggle - CORREGIDO
 function toggleFAQ(button) {
     const content = button.nextElementSibling;
     const icon = button.querySelector('i');
     
-    content.classList.toggle('hidden');
-    icon.classList.toggle('rotate-180');
+    if (content) {
+        content.classList.toggle('hidden');
+    }
+    if (icon) {
+        icon.classList.toggle('rotate-180');
+    }
 }
 
-// Scroll to signup
+// Scroll to signup - CORREGIDO
 function scrollToSignup() {
     const signupSection = currentLang === 'en' ? 
         document.getElementById('beta-signup') : 
         document.getElementById('beta-signup-es');
-    signupSection.scrollIntoView({ behavior: 'smooth' });
+    
+    if (signupSection) {
+        signupSection.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 // ✅ FUNCIÓN MEJORADA CON TODAS LAS CORRECCIONES
@@ -867,25 +879,57 @@ function showMessage(messageEl, text, type) {
 
 // ✅ EVENT LISTENERS MEJORADOS
 document.addEventListener('DOMContentLoaded', function() {
-    // Formulario en inglés
+    console.log('🚀 AI Pixel Tracker - Initializing...');
+    
+    // 1. Inicializar toggle de idioma
+    initLanguageToggle();
+    
+    // 2. Formulario en inglés
     const betaForm = document.getElementById('betaForm');
     if (betaForm) {
         betaForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('📝 Form EN submitted');
             handleFormSubmit(this, 'en');
         });
+        console.log('✅ English form initialized');
+    } else {
+        console.warn('⚠️ English form not found');
     }
     
-    // Formulario en español
+    // 3. Formulario en español
     const betaFormEs = document.getElementById('betaFormEs');
     if (betaFormEs) {
         betaFormEs.addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('📝 Form ES submitted');
             handleFormSubmit(this, 'es');
         });
+        console.log('✅ Spanish form initialized');
+    } else {
+        console.warn('⚠️ Spanish form not found');
     }
     
-    // ✅ TEST DE CONECTIVIDAD (opcional, para debugging)
+    // 4. Inicializar botones FAQ
+    const faqButtons = document.querySelectorAll('.faq-toggle');
+    faqButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            toggleFAQ(this);
+        });
+    });
+    console.log(`✅ ${faqButtons.length} FAQ buttons initialized`);
+    
+    // 5. Inicializar botones CTA
+    const ctaButtons = document.querySelectorAll('button[onclick="scrollToSignup()"]');
+    ctaButtons.forEach(button => {
+        button.removeAttribute('onclick');
+        button.addEventListener('click', scrollToSignup);
+    });
+    console.log(`✅ ${ctaButtons.length} CTA buttons initialized`);
+    
+    console.log('🎉 All components initialized successfully!');
+    
+    // 6. Test de conectividad (solo en desarrollo)
     if (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')) {
         console.log('🔍 Development mode: Connection test available');
         setTimeout(testServerConnection, 2000);
