@@ -8,6 +8,54 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D2CPYRYWHQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D2CPYRYWHQ');
+</script>
+
+<script>
+// Tracking del formulario beta
+document.addEventListener('DOMContentLoaded', function() {
+    // Track cuando usuario hace click en Join Beta
+    const betaButtons = document.querySelectorAll('[onclick*="joinBeta"]');
+    betaButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            gtag('event', 'click_beta_cta', {
+                'event_category': 'engagement',
+                'event_label': 'join_beta_button'
+            });
+        });
+    });
+
+    // Track cuando formulario es enviado
+    const form = document.getElementById('betaForm');
+    if (form) {
+        form.addEventListener('submit', function() {
+            gtag('event', 'form_submit', {
+                'event_category': 'conversion',
+                'event_label': 'beta_signup_attempt'
+            });
+        });
+    }
+
+    // Track scroll milestones
+    let scrollTracked = false;
+    window.addEventListener('scroll', function() {
+        if (!scrollTracked && window.scrollY > window.innerHeight * 0.75) {
+            gtag('event', 'scroll', {
+                'event_category': 'engagement',
+                'event_label': '75_percent_scroll'
+            });
+            scrollTracked = true;
+        }
+    });
+});
+</script>
+
     <style>
         * { font-family: 'Inter', sans-serif; }
         .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
@@ -692,6 +740,15 @@ function scrollToSignup() {
     }
 }
 
+// Track conversión exitosa (llamar cuando aparezca mensaje de éxito)
+function trackBetaSuccess() {
+    gtag('event', 'conversion', {
+        'send_to': 'G-D2CPYRYWHQ/beta_signup',
+        'event_category': 'conversion',
+        'event_label': 'beta_signup_complete'
+    });
+}
+
 // Form submission handler
 async function handleFormSubmit(form, lang) {
     const button = form.querySelector('button[type="submit"]');
@@ -796,6 +853,7 @@ async function handleFormSubmit(form, lang) {
         if (response.ok && (result.success === true || result.status === 'success')) {
             // Éxito
             showMessage(messageEl, t.success, 'success');
+            trackBetaSuccess(); // 🎯 TRACKING GA4 CONVERSION
             form.reset();
         } else {
             // Errores específicos del servidor
